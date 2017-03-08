@@ -1,0 +1,437 @@
+MPASM  5.51             BIN A 7 SEGMENTOS.ASM   3-7-2017  23:02:11         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 
+                      00002 ;La idea de este programa es mostrar un código binario recibido por el puerto A en
+                      00003 ;un display  de 7 segmentos /* 
+                      00004 
+                      00005 ;ZONA DE DATOS**************************************************************************                
+                      00006 
+2007   3FF1           00007                 __CONFIG        _CP_OFF& _WDT_OFF& _PWRTE_ON& _XT_OSC   
+                      00008 
+                      00009                 LIST P=16F84A
+                      00010 
+                      00011                 INCLUDE <P16F84A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+                      00012 
+                      00013 ;ZONA DE CODIGO*************************************************************************
+                      00014 
+0000                  00015         org             0
+                      00016          
+0000   1683           00017         BSF             STATUS,RP0                      ;Acceso al banco 1
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0001   0186           00018         CLRF    TRISB                           ;Definicion del puerto B como salida
+0002   30FF           00019         MOVLW   0xFF
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0003   0085           00020         MOVWF   TRISA                           ;Definicion del puerto A como entrada
+0004   1283           00021         BCF             STATUS,RP0                      ;Acceso al banco 0
+                      00022 
+0005                  00023 inicio
+                      00024 ;********************************* Verifica si es el número 0 ******************************************
+                            *********
+                      00025 
+0005   0805           00026         MOVFW   PORTA                           ;Movemos el puerto A a W
+0006   3EFF           00027         ADDLW   0xFF                            ;Le sumamos el valor F al W
+0007   008C           00028         MOVWF   0x0C                            ;Movemos el resultado a un registro auxiliar (0x0C)
+0008   0F0C           00029         INCFSZ  0x0C,0                          ;Icrementamos y salta si es 0, lo que significa que el n
+                            úmero en binario es 0
+0009   280B           00030         goto    continua_1                      ;Si interpretamos esta línea de comando, entonces pasa a
+                             verificar si el numero es el 1
+000A   2862           00031         goto    es_0                            ;Salto para cargar el número 0 para el display
+                      00032 
+000B                  00033 continua_1
+000B   0805           00034         MOVFW   PORTA
+000C   3EFE           00035         ADDLW   0xFE
+000D   008C           00036         MOVWF   0x0C
+000E   0F0C           00037         INCFSZ  0x0C,0
+000F   2811           00038         goto    continua_2      
+0010   2865           00039         goto    es_1
+MPASM  5.51             BIN A 7 SEGMENTOS.ASM   3-7-2017  23:02:11         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00040 
+0011                  00041 continua_2
+0011   0805           00042         MOVFW   PORTA
+0012   3EFD           00043         ADDLW   0xFD
+0013   008C           00044         MOVWF   0x0C
+0014   0F0C           00045         INCFSZ  0x0C,0  
+0015   2817           00046         goto    continua_3      
+0016   2868           00047         goto    es_2
+                      00048 
+0017                  00049 continua_3
+0017   0805           00050         MOVFW   PORTA
+0018   3EFC           00051         ADDLW   0xFC
+0019   008C           00052         MOVWF   0x0C
+001A   0F0C           00053         INCFSZ  0x0C,0  
+001B   281D           00054         goto    continua_4      
+001C   286B           00055         goto    es_3
+                      00056 
+001D                  00057 continua_4
+001D   0805           00058         MOVFW   PORTA
+001E   3EFB           00059         ADDLW   0xFB
+001F   008C           00060         MOVWF   0x0C
+0020   0F0C           00061         INCFSZ  0x0C,0  
+0021   2823           00062         goto    continua_5      
+0022   286E           00063         goto    es_4
+                      00064 
+0023                  00065 continua_5
+0023   0805           00066         MOVFW   PORTA
+0024   3EFA           00067         ADDLW   0xFA
+0025   008C           00068         MOVWF   0x0C
+0026   0F0C           00069         INCFSZ  0x0C,0  
+0027   2829           00070         goto    continua_6      
+0028   2871           00071         goto    es_5
+                      00072 
+0029                  00073 continua_6
+0029   0805           00074         MOVFW   PORTA
+002A   3EF9           00075         ADDLW   0xF9
+002B   008C           00076         MOVWF   0x0C
+002C   0F0C           00077         INCFSZ  0x0C,0  
+002D   282F           00078         goto    continua_7
+002E   2874           00079         goto    es_6
+                      00080 
+002F                  00081 continua_7      
+002F   0805           00082         MOVFW   PORTA
+0030   3EF8           00083         ADDLW   0xF8
+0031   008C           00084         MOVWF   0x0C
+0032   0F0C           00085         INCFSZ  0x0C,0  
+0033   2835           00086         goto    continua_8
+0034   2877           00087         goto    es_7
+                      00088 
+0035                  00089 continua_8
+0035   0805           00090         MOVFW   PORTA
+0036   3EF7           00091         ADDLW   0xF7
+0037   008C           00092         MOVWF   0x0C
+MPASM  5.51             BIN A 7 SEGMENTOS.ASM   3-7-2017  23:02:11         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0038   0F0C           00093         INCFSZ  0x0C,0  
+0039   283B           00094         goto    continua_9      
+003A   287A           00095         goto    es_8
+                      00096 
+003B                  00097 continua_9
+003B   0805           00098         MOVFW   PORTA
+003C   3EF6           00099         ADDLW   0xF6
+003D   008C           00100         MOVWF   0x0C
+003E   0F0C           00101         INCFSZ  0x0C,0  
+003F   2841           00102         goto    continua_10
+0040   287D           00103         goto    es_9
+                      00104 
+0041                  00105 continua_10
+0041   0805           00106         MOVFW   PORTA
+0042   3EF5           00107         ADDLW   0xF5
+0043   008C           00108         MOVWF   0x0C
+0044   0F0C           00109         INCFSZ  0x0C,0  
+0045   2847           00110         goto    continua_11
+0046   2880           00111         goto    es_A
+                      00112 
+0047                  00113 continua_11
+0047   0805           00114         MOVFW   PORTA
+0048   3EF4           00115         ADDLW   0xF4
+0049   008C           00116         MOVWF   0x0C
+004A   0F0C           00117         INCFSZ  0x0C,0  
+004B   284D           00118         goto    continua_12     
+004C   2883           00119         goto    es_B
+                      00120 
+004D                  00121 continua_12
+004D   0805           00122         MOVFW   PORTA
+004E   3EF3           00123         ADDLW   0xF3
+004F   008C           00124         MOVWF   0x0C
+0050   0F0C           00125         INCFSZ  0x0C,0  
+0051   2853           00126         goto    continua_13     
+0052   2886           00127         goto    es_C
+                      00128 
+0053                  00129 continua_13
+0053   0805           00130         MOVFW   PORTA
+0054   3EF2           00131         ADDLW   0xF2
+0055   008C           00132         MOVWF   0x0C
+0056   0F0C           00133         INCFSZ  0x0C,0  
+0057   2859           00134         goto    continua_14
+0058   2889           00135         goto    es_D
+                      00136 
+0059                  00137 continua_14
+0059   0805           00138         MOVFW   PORTA
+005A   3EF1           00139         ADDLW   0xF1
+005B   008C           00140         MOVWF   0x0C
+005C   0F0C           00141         INCFSZ  0x0C,0  
+005D   285F           00142         goto    continua_15     
+005E   288C           00143         goto    es_E
+                      00144 
+005F                  00145 continua_15
+MPASM  5.51             BIN A 7 SEGMENTOS.ASM   3-7-2017  23:02:11         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+005F   3071           00146         MOVLW b'01110001'
+0060   0086           00147         MOVWF PORTB
+0061   2805           00148         goto inicio
+                      00149 
+0062                  00150 es_0
+0062   3003           00151                 MOVLW b'00000011'               ;Si salto hasta acá, el numero 0 será puesto en el puert
+                            o B.
+0063   0086           00152                 MOVWF PORTB
+0064   2805           00153                 goto inicio
+                      00154 
+0065                  00155 es_1    
+0065   309F           00156                 MOVLW b'10011111'
+0066   0086           00157                 MOVWF PORTB
+0067   2805           00158                 goto inicio
+                      00159 
+0068                  00160 es_2
+0068   3025           00161                 MOVLW b'00100101'
+0069   0086           00162                 MOVWF PORTB
+006A   2805           00163                 goto inicio
+                      00164 
+006B                  00165 es_3
+006B   300D           00166                 MOVLW b'00001101'
+006C   0086           00167                 MOVWF PORTB
+006D   2805           00168                 goto inicio
+                      00169 
+006E                  00170 es_4
+006E   3099           00171                 MOVLW b'10011001'
+006F   0086           00172                 MOVWF PORTB
+0070   2805           00173                 goto inicio
+                      00174 
+0071                  00175 es_5
+0071   3049           00176                 MOVLW b'01001001'
+0072   0086           00177                 MOVWF PORTB
+0073   2805           00178                 goto inicio
+                      00179 
+0074                  00180 es_6
+0074   3041           00181                 MOVLW b'01000001'
+0075   0086           00182                 MOVWF PORTB
+0076   2805           00183                 goto inicio
+                      00184 
+0077                  00185 es_7
+0077   301F           00186                 MOVLW b'00011111'
+0078   0086           00187                 MOVWF PORTB
+0079   2805           00188                 goto inicio
+                      00189 
+007A                  00190 es_8
+007A   3001           00191                 MOVLW b'00000001'
+007B   0086           00192                 MOVWF PORTB
+007C   2805           00193                 goto inicio
+                      00194 
+007D                  00195 es_9
+007D   3019           00196                 MOVLW b'00011001'
+007E   0086           00197                 MOVWF PORTB
+MPASM  5.51             BIN A 7 SEGMENTOS.ASM   3-7-2017  23:02:11         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+007F   2805           00198                 goto inicio
+                      00199 
+0080                  00200 es_A
+0080   3011           00201                 MOVLW b'00010001'
+0081   0086           00202                 MOVWF PORTB
+0082   2805           00203                 goto inicio
+                      00204 
+0083                  00205 es_B
+0083   30C1           00206                 MOVLW b'11000001'
+0084   0086           00207                 MOVWF PORTB
+0085   2805           00208                 goto inicio
+                      00209 
+0086                  00210 es_C
+0086   3063           00211                 MOVLW b'01100011'
+0087   0086           00212                 MOVWF PORTB
+0088   2805           00213                 goto inicio
+                      00214 
+0089                  00215 es_D
+0089   3085           00216                 MOVLW b'10000101'
+008A   0086           00217                 MOVWF PORTB
+008B   2805           00218                 goto inicio
+                      00219 
+008C                  00220 es_E
+008C   3061           00221                 MOVLW b'01100001'
+008D   0086           00222                 MOVWF PORTB
+008E   2805           00223                 goto inicio
+                      00224 
+                      00225         END
+MPASM  5.51             BIN A 7 SEGMENTOS.ASM   3-7-2017  23:02:11         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+DC                                00000001
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TMR0                              00000001
+MPASM  5.51             BIN A 7 SEGMENTOS.ASM   3-7-2017  23:02:11         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+continua_1                        0000000B
+continua_10                       00000041
+continua_11                       00000047
+continua_12                       0000004D
+continua_13                       00000053
+continua_14                       00000059
+continua_15                       0000005F
+continua_2                        00000011
+MPASM  5.51             BIN A 7 SEGMENTOS.ASM   3-7-2017  23:02:11         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+continua_3                        00000017
+continua_4                        0000001D
+continua_5                        00000023
+continua_6                        00000029
+continua_7                        0000002F
+continua_8                        00000035
+continua_9                        0000003B
+es_0                              00000062
+es_1                              00000065
+es_2                              00000068
+es_3                              0000006B
+es_4                              0000006E
+es_5                              00000071
+es_6                              00000074
+es_7                              00000077
+es_8                              0000007A
+es_9                              0000007D
+es_A                              00000080
+es_B                              00000083
+es_C                              00000086
+es_D                              00000089
+es_E                              0000008C
+inicio                            00000005
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0080 : XXXXXXXXXXXXXXX- ---------------- ---------------- ----------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:   143
+Program Memory Words Free:   881
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+

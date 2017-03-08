@@ -1,0 +1,220 @@
+,,,;ZONA DE DATOS**************************************************************************
+,,,
+,,,                __CONFIG        _CP_OFF& _WDT_OFF& _PWRTE_ON& _XT_OSC
+,,,
+,,,                LIST P=16F84A
+,,,
+,,,                INCLUDE <P16F84A.INC>
+,,,
+,,,;ZONA DE CODIGO*************************************************************************
+,,,
+,,,        org             0
+,,,
+00000000,1683,,        BSF             STATUS,RP0
+00000001,0186,,        CLRF    TRISB
+00000002,30FF,,        MOVLW   0xFF
+00000003,0085,,        MOVWF   TRISA
+00000004,1283,,        BCF             STATUS,RP0
+,,,
+00000005,,inicio,inicio
+,,,
+00000005,0805,,        MOVFW   PORTA
+00000006,3EFF,,        ADDLW   0xFF
+00000007,008C,,        MOVWF   0x0C
+00000008,0F0C,,        INCFSZ  0x0C,0
+00000009,280B,,        goto    continua_1
+0000000A,2862,,        goto    es_0
+,,,
+0000000B,,continua_1,continua_1
+0000000B,0805,,        MOVFW   PORTA
+0000000C,3EFE,,        ADDLW   0xFE
+0000000D,008C,,        MOVWF   0x0C
+0000000E,0F0C,,        INCFSZ  0x0C,0
+0000000F,2811,,        goto    continua_2
+00000010,2865,,        goto    es_1
+,,,
+00000011,,continua_2,continua_2
+00000011,0805,,        MOVFW   PORTA
+00000012,3EFD,,        ADDLW   0xFD
+00000013,008C,,        MOVWF   0x0C
+00000014,0F0C,,        INCFSZ  0x0C,0
+00000015,2817,,        goto    continua_3
+00000016,2868,,        goto    es_2
+,,,
+00000017,,continua_3,continua_3
+00000017,0805,,        MOVFW   PORTA
+00000018,3EFC,,        ADDLW   0xFC
+00000019,008C,,        MOVWF   0x0C
+0000001A,0F0C,,        INCFSZ  0x0C,0
+0000001B,281D,,        goto    continua_4
+0000001C,286B,,        goto    es_3
+,,,
+0000001D,,continua_4,continua_4
+0000001D,0805,,        MOVFW   PORTA
+0000001E,3EFB,,        ADDLW   0xFB
+0000001F,008C,,        MOVWF   0x0C
+00000020,0F0C,,        INCFSZ  0x0C,0
+00000021,2823,,        goto    continua_5
+00000022,286E,,        goto    es_4
+,,,
+00000023,,continua_5,continua_5
+00000023,0805,,        MOVFW   PORTA
+00000024,3EFA,,        ADDLW   0xFA
+00000025,008C,,        MOVWF   0x0C
+00000026,0F0C,,        INCFSZ  0x0C,0
+00000027,2829,,        goto    continua_6
+00000028,2871,,        goto    es_5
+,,,
+00000029,,continua_6,continua_6
+00000029,0805,,        MOVFW   PORTA
+0000002A,3EF9,,        ADDLW   0xF9
+0000002B,008C,,        MOVWF   0x0C
+0000002C,0F0C,,        INCFSZ  0x0C,0
+0000002D,282F,,        goto    continua_7
+0000002E,2874,,        goto    es_6
+,,,
+0000002F,,continua_7,continua_7
+0000002F,0805,,        MOVFW   PORTA
+00000030,3EF8,,        ADDLW   0xF8
+00000031,008C,,        MOVWF   0x0C
+00000032,0F0C,,        INCFSZ  0x0C,0
+00000033,2835,,        goto    continua_8
+00000034,2877,,        goto    es_7
+,,,
+00000035,,continua_8,continua_8
+00000035,0805,,        MOVFW   PORTA
+00000036,3EF7,,        ADDLW   0xF7
+00000037,008C,,        MOVWF   0x0C
+00000038,0F0C,,        INCFSZ  0x0C,0
+00000039,283B,,        goto    continua_9
+0000003A,287A,,        goto    es_8
+,,,
+0000003B,,continua_9,continua_9
+0000003B,0805,,        MOVFW   PORTA
+0000003C,3EF6,,        ADDLW   0xF6
+0000003D,008C,,        MOVWF   0x0C
+0000003E,0F0C,,        INCFSZ  0x0C,0
+0000003F,2841,,        goto    continua_10
+00000040,287D,,        goto    es_9
+,,,
+00000041,,continua_10,continua_10
+00000041,0805,,        MOVFW   PORTA
+00000042,3EF5,,        ADDLW   0xF5
+00000043,008C,,        MOVWF   0x0C
+00000044,0F0C,,        INCFSZ  0x0C,0
+00000045,2847,,        goto    continua_11
+00000046,2880,,        goto    es_A
+,,,
+00000047,,continua_11,continua_11
+00000047,0805,,        MOVFW   PORTA
+00000048,3EF4,,        ADDLW   0xF4
+00000049,008C,,        MOVWF   0x0C
+0000004A,0F0C,,        INCFSZ  0x0C,0
+0000004B,284D,,        goto    continua_12
+0000004C,2883,,        goto    es_B
+,,,
+0000004D,,continua_12,continua_12
+0000004D,0805,,        MOVFW   PORTA
+0000004E,3EF3,,        ADDLW   0xF3
+0000004F,008C,,        MOVWF   0x0C
+00000050,0F0C,,        INCFSZ  0x0C,0
+00000051,2853,,        goto    continua_13
+00000052,2886,,        goto    es_C
+,,,
+00000053,,continua_13,continua_13
+00000053,0805,,        MOVFW   PORTA
+00000054,3EF2,,        ADDLW   0xF2
+00000055,008C,,        MOVWF   0x0C
+00000056,0F0C,,        INCFSZ  0x0C,0
+00000057,2859,,        goto    continua_14
+00000058,2889,,        goto    es_D
+,,,
+00000059,,continua_14,continua_14
+00000059,0805,,        MOVFW   PORTA
+0000005A,3EF1,,        ADDLW   0xF1
+0000005B,008C,,        MOVWF   0x0C
+0000005C,0F0C,,        INCFSZ  0x0C,0
+0000005D,285F,,        goto    continua_15
+0000005E,288C,,        goto    es_E
+,,,
+0000005F,,continua_15,continua_15
+0000005F,3071,,        MOVLW b'01110001'
+00000060,0086,,        MOVWF PORTB
+00000061,2805,,        goto inicio
+,,,
+00000062,,es_0,es_0
+00000062,3003,,                MOVLW b'00000011'
+00000063,0086,,                MOVWF PORTB
+00000064,2805,,                goto inicio
+,,,
+00000065,,es_1,es_1
+00000065,309F,,                MOVLW b'10011111'
+00000066,0086,,                MOVWF PORTB
+00000067,2805,,                goto inicio
+,,,
+00000068,,es_2,es_2
+00000068,3025,,                MOVLW b'00100101'
+00000069,0086,,                MOVWF PORTB
+0000006A,2805,,                goto inicio
+,,,
+0000006B,,es_3,es_3
+0000006B,300D,,                MOVLW b'00001101'
+0000006C,0086,,                MOVWF PORTB
+0000006D,2805,,                goto inicio
+,,,
+0000006E,,es_4,es_4
+0000006E,3099,,                MOVLW b'10011001'
+0000006F,0086,,                MOVWF PORTB
+00000070,2805,,                goto inicio
+,,,
+00000071,,es_5,es_5
+00000071,3049,,                MOVLW b'01001001'
+00000072,0086,,                MOVWF PORTB
+00000073,2805,,                goto inicio
+,,,
+00000074,,es_6,es_6
+00000074,3041,,                MOVLW b'01000001'
+00000075,0086,,                MOVWF PORTB
+00000076,2805,,                goto inicio
+,,,
+00000077,,es_7,es_7
+00000077,301F,,                MOVLW b'00011111'
+00000078,0086,,                MOVWF PORTB
+00000079,2805,,                goto inicio
+,,,
+0000007A,,es_8,es_8
+0000007A,3001,,                MOVLW b'00000001'
+0000007B,0086,,                MOVWF PORTB
+0000007C,2805,,                goto inicio
+,,,
+0000007D,,es_9,es_9
+0000007D,3019,,                MOVLW b'00011001'
+0000007E,0086,,                MOVWF PORTB
+0000007F,2805,,                goto inicio
+,,,
+00000080,,es_A,es_A
+00000080,3011,,                MOVLW b'00010001'
+00000081,0086,,                MOVWF PORTB
+00000082,2805,,                goto inicio
+,,,
+00000083,,es_B,es_B
+00000083,30C1,,                MOVLW b'11000001'
+00000084,0086,,                MOVWF PORTB
+00000085,2805,,                goto inicio
+,,,
+00000086,,es_C,es_C
+00000086,3063,,                MOVLW b'01100011'
+00000087,0086,,                MOVWF PORTB
+00000088,2805,,                goto inicio
+,,,
+00000089,,es_D,es_D
+00000089,3085,,                MOVLW b'10000101'
+0000008A,0086,,                MOVWF PORTB
+0000008B,2805,,                goto inicio
+,,,
+0000008C,,es_E,es_E
+0000008C,3061,,                MOVLW b'01100001'
+0000008D,0086,,                MOVWF PORTB
+0000008E,2805,,                goto inicio
+,,,
+,,,        END
