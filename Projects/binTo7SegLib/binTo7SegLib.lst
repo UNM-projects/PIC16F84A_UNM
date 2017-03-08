@@ -1,0 +1,291 @@
+MPASM  5.51                      UNTITLED.ASM   3-8-2017  20:04:20         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;La idea de este programa es mostrar un código binario recibido por el puerto A en
+                      00002 ;un display  de 7 segmentos conectado en el puerto B, mostrando el uso como se crean/utilizan librerias
+                      00003 
+                      00004 ;ZONA DE DATOS**************************************************************************
+                      00005 
+2007   3FF1           00006         __CONFIG _CP_OFF& _WDT_OFF& _PWRTE_ON& _XT_OSC
+                      00007         LIST P=16F84A
+                      00008         INCLUDE <P16F84A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+                      00009         INCLUDE TV_4_16_7SEG.inc                                ;Incluimos la libreria para que pueda se
+                            r llamada
+                      00001 ;LIBRERIA DE SUBRUTINA PARA RESOLVER TABLAS DE VERDAD DE 4 ENTRADAS A 7 SEGMENTOS
+0000                  00002 TV_4_16_7SEG
+                      00003 
+0000   0805           00004         MOVF    PORTA,W
+0001   390F           00005         ANDLW   0x0F
+                      00006 
+0002   0782           00007         ADDWF   PCL,F
+0003   2813           00008         goto    opcion_0
+0004   2815           00009         goto    opcion_1
+0005   2817           00010         goto    opcion_2
+0006   2819           00011         goto    opcion_3
+0007   281B           00012         goto    opcion_4
+0008   281D           00013         goto    opcion_5
+0009   281F           00014         goto    opcion_6
+000A   2821           00015         goto    opcion_7
+000B   2823           00016         goto    opcion_8
+000C   2825           00017         goto    opcion_9
+000D   2827           00018         goto    opcion_A
+000E   2829           00019         goto    opcion_B
+000F   282B           00020         goto    opcion_C
+0010   282D           00021         goto    opcion_D
+0011   282F           00022         goto    opcion_E
+0012   2831           00023         goto    opcion_F
+                      00024 
+                      00025         
+0013                  00026 opcion_0        
+0013   3003           00027         MOVLW   b'00000011'
+0014   2832           00028         goto    salida
+0015                  00029 opcion_1
+0015   309F           00030         MOVLW   b'10011111'
+0016   2832           00031         goto    salida
+0017                  00032 opcion_2
+0017   3025           00033         MOVLW   b'00100101'
+0018   2832           00034         goto    salida
+MPASM  5.51                      UNTITLED.ASM   3-8-2017  20:04:20         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0019                  00035 opcion_3
+0019   300D           00036         MOVLW   b'00001101'
+001A   2832           00037         goto    salida
+001B                  00038 opcion_4
+001B   3099           00039         MOVLW   b'10011001'     
+001C   2832           00040         goto    salida
+001D                  00041 opcion_5
+001D   3049           00042         MOVLW   b'01001001'
+001E   2832           00043         goto    salida
+001F                  00044 opcion_6
+001F   3041           00045         MOVLW   b'01000001'
+0020   2832           00046         goto    salida
+0021                  00047 opcion_7
+0021   301F           00048         MOVLW   b'00011111'
+0022   2832           00049         goto    salida
+0023                  00050 opcion_8
+0023   3001           00051         MOVLW   b'00000001'
+0024   2832           00052         goto    salida
+0025                  00053 opcion_9
+0025   3019           00054         MOVLW   b'00011001'
+0026   2832           00055         goto    salida
+0027                  00056 opcion_A
+0027   3011           00057         MOVLW   b'00010001'
+0028   2832           00058         goto    salida
+0029                  00059 opcion_B
+0029   30C1           00060         MOVLW   b'11000001'
+002A   2832           00061         goto    salida
+002B                  00062 opcion_C
+002B   3063           00063         MOVLW   b'01100011'
+002C   2832           00064         goto    salida
+002D                  00065 opcion_D
+002D   3085           00066         MOVLW   b'10000101'
+002E   2832           00067         goto    salida
+002F                  00068 opcion_E
+002F   3061           00069         MOVLW   b'01100001'
+0030   2832           00070         goto    salida
+0031                  00071 opcion_F
+0031   3071           00072         MOVLW   b'01110001'
+                      00073 
+0032                  00074 salida  
+0032   0086           00075         MOVWF PORTB
+0033   0008           00076         return
+                      00077 
+                      00078         
+                      00079         
+                      00080         
+                      00010 
+                      00011 ;ZONA DE CODIGO*************************************************************************
+                      00012 
+0034   1683           00013         BSF             STATUS,RP0                                              ;Inicializacion y defini
+                            cion de puertos accediendo al puerto 1.
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0035   0186           00014         CLRF    TRISB                                                   ;Definicion de puerto B como sal
+MPASM  5.51                      UNTITLED.ASM   3-8-2017  20:04:20         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                            ida
+0036   30FF           00015         MOVLW   0xFF
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0037   0085           00016         MOVWF   TRISA                                                   ;Definicion de puerto A como ent
+                            rada
+0038   1283           00017         BCF             STATUS,RP0                                              ;Acceso al banco 0
+                      00018         
+0039                  00019 inicio
+                      00020                                                 
+0039   2000           00021         CALL    TV_4_16_7SEG                                    ;Llamado a TV_4_16_7SEG (Buscar y leer a
+                            rchivo)
+003A   2839           00022         goto    inicio
+                      00023 
+                      00024         END
+MPASM  5.51                      UNTITLED.ASM   3-8-2017  20:04:20         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+DC                                00000001
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TMR0                              00000001
+MPASM  5.51                      UNTITLED.ASM   3-8-2017  20:04:20         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TV_4_16_7SEG                      00000000
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+inicio                            00000039
+opcion_0                          00000013
+opcion_1                          00000015
+opcion_2                          00000017
+opcion_3                          00000019
+opcion_4                          0000001B
+opcion_5                          0000001D
+MPASM  5.51                      UNTITLED.ASM   3-8-2017  20:04:20         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+opcion_6                          0000001F
+opcion_7                          00000021
+opcion_8                          00000023
+opcion_9                          00000025
+opcion_A                          00000027
+opcion_B                          00000029
+opcion_C                          0000002B
+opcion_D                          0000002D
+opcion_E                          0000002F
+opcion_F                          00000031
+salida                            00000032
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXX-----
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    59
+Program Memory Words Free:   965
+
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+

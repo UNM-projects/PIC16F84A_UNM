@@ -1,0 +1,69 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Wed Mar 08 20:04:20 2017
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000076
+  .config_2007_UNTITLED.O       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00003a      
+                            0x002007    0x002007      
+            60 out of 1094 program addresses used, program memory utilization is 5%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+             TV_4_16_7SEG   0x000000    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                   inicio   0x000039    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\Untitled.asm
+                 opcion_0   0x000013    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_1   0x000015    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_2   0x000017    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_3   0x000019    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_4   0x00001b    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_5   0x00001d    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_6   0x00001f    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_7   0x000021    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_8   0x000023    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_9   0x000025    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_A   0x000027    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_B   0x000029    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_C   0x00002b    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_D   0x00002d    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_E   0x00002f    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_F   0x000031    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                   salida   0x000032    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+             TV_4_16_7SEG   0x000000    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_0   0x000013    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_1   0x000015    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_2   0x000017    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_3   0x000019    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_4   0x00001b    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_5   0x00001d    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_6   0x00001f    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_7   0x000021    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_8   0x000023    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_9   0x000025    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_A   0x000027    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_B   0x000029    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_C   0x00002b    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_D   0x00002d    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_E   0x00002f    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                 opcion_F   0x000031    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                   salida   0x000032    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\TV_4_16_7SEG.inc
+                   inicio   0x000039    program     static C:\Users\Agustinceravolo\Documents\Microcontroladores\PIC16f84a\Programas\Bin a 7 segmentos con libreria de TV_4_16\Untitled.asm
+
+
