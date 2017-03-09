@@ -1,3 +1,6 @@
+;AUTOR: Agustin Cerávolo
+;FECHA: 07/03/2017
+;Universidad Nacional de Moreno  
 
 ;La idea de este programa es mostrar un código binario recibido por el puerto A en
 ;un display  de 7 segmentos /* 

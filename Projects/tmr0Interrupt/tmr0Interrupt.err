@@ -1,0 +1,7 @@
+Warning[207] C:\USERS\AGUSTINCERAVOLO\DESKTOP\UNTITLED.ASM 13 : Found label after column 1. (AUX_DESBORDE)
+Warning[205] C:\USERS\AGUSTINCERAVOLO\DESKTOP\UNTITLED.ASM 16 : Found directive in column 1. (org)
+Warning[205] C:\USERS\AGUSTINCERAVOLO\DESKTOP\UNTITLED.ASM 19 : Found directive in column 1. (org)
+Message[302] C:\USERS\AGUSTINCERAVOLO\DESKTOP\UNTITLED.ASM 23 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\AGUSTINCERAVOLO\DESKTOP\UNTITLED.ASM 27 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[205] C:\USERS\AGUSTINCERAVOLO\DESKTOP\UNTITLED.ASM 45 : Found directive in column 1. (org)
+Warning[205] C:\USERS\AGUSTINCERAVOLO\DESKTOP\UNTITLED.ASM 56 : Found directive in column 1. (end)

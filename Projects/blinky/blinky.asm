@@ -1,4 +1,6 @@
-
+;AUTOR: Agustin Cerávolo
+;FECHA: 08/03/2017
+;Universidad Nacional de Moreno  
 
 ;La idea de este programa, es hacer titilar los 3 bits menos significativos del puerto A cada un segundo
 ;mostrando el uso del timer0
