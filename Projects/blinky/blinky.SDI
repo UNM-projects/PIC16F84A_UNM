@@ -1,0 +1,51 @@
+,,,;ZONA DE DATOS**************************************************************************
+,,,
+,,,        AUX_DESBORDE    equ             0x000C  ;Auxiliar para saber cuantas veces desborda el timer
+,,,
+,,,;ZONA DE CONFIG*****************************************************************************************
+,,,org 0
+00000000,,,        goto inicio
+,,,
+,,,org 10
+,,,
+00000010,,inicio,inicio
+00000010,,,        BSF             STATUS,RP0                                                      ;Inicializacion
+00000010,,,        CLRF    TRISB
+00000010,,,        MOVLW   0xFF
+00000010,,,        MOVWF   TRISA
+00000010,,,        BCF             STATUS,RP0
+,,,
+,,,        movlw   b'00000000'
+,,,        movwf   INTCON                                  ;Interrupciones habilitadas
+,,,        movlw   b'00000111'
+,,,        movwf   OPTION_REG                              ;OPTIONREG:  X  X  X  X  PSA  PS2  PS1  PS0 . Pr
+,,,
+00000010,,loop,loop
+00000010,,,        movlw   b'00000111'
+00000010,,,        movwf   PORTB
+00000010,,,        call    TIMER
+00000010,,,        movlw   b'00000000'
+00000010,,,        movwf   PORTB
+00000010,,,        call    TIMER
+00000010,,,        goto loop
+,,,
+,,,
+,,,;SUBRUTINA DE TIMER DE 1 SEG ***************************************************************************
+,,,
+00000010,,TIMER,TIMER
+00000010,,,        movlw   b'00001111'
+00000010,,,        movwf   AUX_DESBORDE                    ;Setear el auxiliar que contea los desbordes de timer
+00000010,,AUX_TIMER,AUX_TIMER
+00000010,,,        movlw   b'000000001'                    ;Setear valor del timer.
+00000010,,,        movwf   TMR0
+00000010,,,        bcf             INTCON,T0IF                             ;Limpiar bandera de desborde.
+,,,
+00000010,,TIMER0_DESBORDAMIENTO,TIMER0_DESBORDAMIENTO                           ;¿Desbordo? Aumentar auxiliar.
+00000010,,,        btfss   INTCON,T0IF
+00000010,,,        goto    TIMER0_DESBORDAMIENTO
+,,,
+,,,        decfsz  AUX_DESBORDE
+,,,        goto    AUX_TIMER
+00000010,,,        return
+,,,
+,,,END

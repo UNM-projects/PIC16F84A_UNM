@@ -1,0 +1,234 @@
+MPASM  5.51                      UNTITLED.ASM   3-8-2017  21:27:02         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 
+                      00002 
+                      00003 ;La idea de este programa, es hacer titilar los 3 bits menos significativos del puerto A cada un segundo
+                      00004 ;mostrando el uso del timer0
+                      00005 
+                      00006 ;ZONA DE DATOS**************************************************************************
+                      00007 
+2007   3FF1           00008         __CONFIG _CP_OFF& _WDT_OFF& _PWRTE_ON& _XT_OSC
+                      00009         LIST P=16F84A
+                      00010         INCLUDE <P16F84A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+                      00011         
+Warning[207]: Found label after column 1. (AUX_DESBORDE)
+  0000000C            00012         AUX_DESBORDE    equ             0x000C  ;Auxiliar para saber cuantas veces desborda el timer
+                      00013 
+                      00014 ;ZONA DE CONFIG*****************************************************************************************
+                            ********
+Warning[205]: Found directive in column 1. (org)
+0000                  00015 org 0
+0000   2810           00016         goto inicio
+                      00017 
+Warning[205]: Found directive in column 1. (org)
+0010                  00018 org 10
+                      00019 
+0010                  00020 inicio  
+0010   1683           00021         bsf STATUS,RP0                                  ;Acceso al banco 1                              
+0011   30FF           00022         movlw   0xFF
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0012   0085           00023         movwf   TRISA                                   ;Definicion de puerto A como entrada
+0013   3000           00024         movlw   b'00000000'     
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0014   0086           00025         movwf   TRISB                                   ;Definicion de puerto B como salida
+0015   3000           00026         movlw   b'00000000'
+0016   008B           00027         movwf   INTCON                                  ;Intcon en 0, todas las interrupciones deshabili
+                            tadas
+0017   3007           00028         movlw   b'00000111'             
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0018   0081           00029         movwf   OPTION_REG                              ; OPTIONREG :  X X X X PSA PS2 PS1      PS0 . Pr
+                            escaler al timer, y de valor 256
+0019   1283           00030         bcf     STATUS,RP0                                      ; Acceso al baco 0
+                      00031 
+                      00032 
+                      00033 ;ZONA DE CODIGO*****************************************************************************************
+                            *********
+001A                  00034 loop
+MPASM  5.51                      UNTITLED.ASM   3-8-2017  21:27:02         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001A   3007           00035         movlw   b'00000111'
+001B   0086           00036         movwf   PORTB
+001C   2021           00037         call    TIMER
+001D   3000           00038         movlw   b'00000000'
+001E   0086           00039         movwf   PORTB
+001F   2021           00040         call    TIMER
+0020   281A           00041         goto loop
+                      00042 
+                      00043 
+                      00044 ;SUBRUTINA DE TIMER DE 1 SEG ***************************************************************************
+                            ***********
+                      00045 
+0021                  00046 TIMER
+0021   300F           00047         movlw   b'00001111'                                             
+0022   008C           00048         movwf   AUX_DESBORDE                    ;Setear el auxiliar que contea los desbordes de timer (1
+                            5 * 65ms = 0.97 seg)                                    
+0023                  00049 AUX_TIMER       
+0023   3001           00050         movlw   b'000000001'                    ;Setear valor del timer. (Con esto y el prescaler, desbo
+                            rda cada 65ms)
+0024   0081           00051         movwf   TMR0
+0025   110B           00052         bcf             INTCON,T0IF                             ;Limpiar bandera de desborde.
+                      00053 
+0026                  00054 TIMER0_DESBORDAMIENTO                           ;¿Desbordo? Aumentar auxiliar.
+0026   1D0B           00055         btfss   INTCON,T0IF             
+0027   2826           00056         goto    TIMER0_DESBORDAMIENTO   
+                      00057 
+0028   0B8C           00058         decfsz  AUX_DESBORDE,F                  ;Desbordo, descuento el valor del auxiliar. Si es 0, ret
+                            orno, paso 1 segundo
+0029   2823           00059         goto    AUX_TIMER
+002A   0008           00060         return  
+                      00061         
+Warning[205]: Found directive in column 1. (END)
+                      00062 END
+MPASM  5.51                      UNTITLED.ASM   3-8-2017  21:27:02         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+AUX_DESBORDE                      0000000C
+AUX_TIMER                         00000023
+C                                 00000000
+DC                                00000001
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+MPASM  5.51                      UNTITLED.ASM   3-8-2017  21:27:02         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T0SE                              00000004
+TIMER                             00000021
+TIMER0_DESBORDAMIENTO             00000026
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+inicio                            00000010
+loop                              0000001A
+MPASM  5.51                      UNTITLED.ASM   3-8-2017  21:27:02         PAGE  5
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+
+0000 : X--------------- XXXXXXXXXXXXXXXX XXXXXXXXXXX----- ----------------
+2000 : -------X-------- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    28
+Program Memory Words Free:   996
+
+
+Errors   :     0
+Warnings :     4 reported,     0 suppressed
+Messages :     3 reported,     0 suppressed
+
+
